@@ -148,6 +148,12 @@ namespace Permutations
 
             return i * Factorial(i - 1);
         }
+
+        private static IEnumerable<string> Perms(string s) =>
+            s.Length < 2 ? new[] { s } :
+                Enumerable.Range(0, s.Length).SelectMany(i =>
+                    Perms(s.Substring(0, i) + s.Substring(i + 1)).Select(sp => sp + s[i])
+                );
     }
 }
 
